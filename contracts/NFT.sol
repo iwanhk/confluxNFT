@@ -3,10 +3,10 @@
 pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import "./token/CRC1155/presets/CRC1155PresetAutoId.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract NFT is Ownable, ERC1155 {
+contract NFT is Ownable, CRC1155PresetAutoId {
     using Strings for uint256;
 
     uint256 public immutable ordinaryNumber;
@@ -26,7 +26,7 @@ contract NFT is Ownable, ERC1155 {
         uint256 _uniqueNumber,
         uint256 _fitNumber,
         string memory _uri
-    ) ERC1155(_uri) {
+    ) CRC1155PresetAutoId(_uri) {
         require(_fitNumber>0 && _ordinaryNumber>=_fitNumber && _uniqueNumber>0, "Invalid arg");
 
         ordinaryNumber = _ordinaryNumber;
